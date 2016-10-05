@@ -26,11 +26,19 @@ namespace CT {
 				return; // do not open if current scene is the same as being opened
 			}
 			if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) {
-				EditorSceneManager.OpenScene("Assets/Scenes/"+name+".unity");
+				EditorSceneManager.OpenScene("Assets/" + name + ".unity");
 			}
 		}
 
 		public static class Screenshot {
+
+			private const string FileNamePrefix = "Screen";
+			private const string FolderName = "Screenshots";
+			private static string ScreenshotsPath { get { return Application.dataPath + "/../" + FolderName; } }
+			private static string DateWithTimeString { get { return System.DateTime.Now.ToString("yyyyMMdd_HHmmss_fff"); } }
+			private static string FileName(int width, int height) { return string.Format("{0}-{1}-{2}x{3}.png", FileNamePrefix, DateWithTimeString, width, height); }
+			private static string FilePath(int width, int height) { return ScreenshotsPath + "/" + FileName(width, height); }
+
 			public static void Take() {
 				// try to use private methods to get game view size, sometimes Screen.width/height have wrong values
 				// get type of "game" window
@@ -133,13 +141,6 @@ namespace CT {
 				}
 			}
 
-			private const string FileNamePrefix = "Screen";
-			private const string FolderName = "_Screenshots";
-
-			private static string ScreenshotsPath { get { return Application.dataPath + "/../" + FolderName; } }
-			private static string DateWithTimeString { get { return System.DateTime.Now.ToString("yyyyMMdd_HHmmss_fff"); } }
-			private static string FileName(int width, int height) { return string.Format("{0}-{1}-{2}x{3}.png", FileNamePrefix, DateWithTimeString, width, height); }
-			private static string FilePath(int width, int height) { return ScreenshotsPath + "/" + FileName(width, height); }
 		}
 	}
 }

@@ -77,14 +77,6 @@ namespace CT
 
 		public static GameObject World { get { return obj.world; } }
 
-		public static int scorePoints; // state
-		public static int totalLevels; // state
-		public static int totalCookies; // state
-		public static int prizesIndex; // state
-		public static int themeId; // state (themes: rural 0, town 1, industrial 2)
-		public static int themesUnlockedBits = 1; // state (themes unlocked: rural 0th bit DEFAULT (from least important), town 1st bit, industrial 2nd)
-		public static bool starCollectVisible; // state (once star collect is visible it will stay visible)
-
 		/// <summary>DEBUG ONLY</summary>
 
 		/// <summary>Use in "yield return" to wait until "awaiting signal" state is entered. Exits immediately if already in "awaiting signal" state.</summary>
