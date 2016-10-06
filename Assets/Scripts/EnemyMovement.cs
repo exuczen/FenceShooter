@@ -36,5 +36,5 @@ namespace FenceShooter
 				nav.enabled = false;
 			}
 		}
-	} 
+	}
 }

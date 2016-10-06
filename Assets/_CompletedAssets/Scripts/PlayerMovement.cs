@@ -7,7 +7,6 @@ namespace CompleteProject
 	{
 		public float speed = 6f;            // The speed that the player will move at.
 
-
 		Vector3 movement;                   // The vector to store the direction of the player's movement.
 		Animator anim;                      // Reference to the animator component.
 		Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
@@ -45,7 +44,6 @@ namespace CompleteProject
 			Animating(h, v);
 		}
 
-
 		void Move(float h, float v)
 		{
 			// Set the movement vector based on the axis input.
@@ -57,7 +55,6 @@ namespace CompleteProject
 			// Move the player to it's current position plus the movement.
 			playerRigidbody.MovePosition(transform.position + movement);
 		}
-
 
 		void Turning()
 		{
@@ -78,10 +75,10 @@ namespace CompleteProject
 				playerToMouse.y = 0f;
 
 				// Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-				Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
+				Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
 
 				// Set the player's rotation to this new rotation.
-				playerRigidbody.MoveRotation(newRotatation);
+				playerRigidbody.MoveRotation(newRotation);
 			}
 #else
 
@@ -103,7 +100,6 @@ namespace CompleteProject
             }
 #endif
 		}
-
 
 		void Animating(float h, float v)
 		{
