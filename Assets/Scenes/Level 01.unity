@@ -100,7 +100,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44767297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7b87724ff82d244097c42a3a57ff588, type: 3}
   m_Name: 
@@ -108,13 +108,13 @@ MonoBehaviour:
   shootDistance: 10
   shootRate: 0.5
   shootingScript: {fileID: 1016769219}
---- !u!195 &44767304
+--- !u!195 &44767299
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44767297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &515826442
 AudioListener:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &845451501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1141,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10875500, guid: ad67cddd729fb4342be2063a3f5ad7cc, type: 2}
       propertyPath: m_Intensity
-      value: 1.27
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 126720, guid: ad67cddd729fb4342be2063a3f5ad7cc, type: 2}
       propertyPath: m_IsActive
@@ -1741,15 +1741,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Intensity
-      value: 1.5
+      value: 3.526365
       objectReference: {fileID: 0}
     - target: {fileID: 11418494, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11404368, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Enabled
@@ -1758,6 +1758,42 @@ Prefab:
     - target: {fileID: 12058866, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498066, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495080, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 420264, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_SpotAngle
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_BounceIntensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_Color.g
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_Color.b
+      value: 0.3137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 10883500, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}

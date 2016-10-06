@@ -9,7 +9,7 @@ public static class UnityExtension
 	public static void OpenSceneMain() {
 		CT.ExtensionUNITY.OpenScene("Scenes/Level 01");
 	}
-	[MenuItem("Scenes/Completed")]
+	[MenuItem("Scenes/SurvivalShooter")]
 	public static void OpenSceneCompleted() {
 		CT.ExtensionUNITY.OpenScene("_CompletedAssets/Scenes/Level 01 5.x");
 	}
