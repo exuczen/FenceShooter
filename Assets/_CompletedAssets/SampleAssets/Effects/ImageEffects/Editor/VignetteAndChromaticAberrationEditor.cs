@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityStandardAssets.ImageEffects
+namespace UnitySampleAssets.ImageEffects
 {
     [CustomEditor (typeof(VignetteAndChromaticAberration))]
     class VignetteAndChromaticAberrationEditor : Editor

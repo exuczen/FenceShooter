@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.ImageEffects
+namespace UnitySampleAssets.ImageEffects
 {
     [ExecuteInEditMode]
     [AddComponentMenu ("Image Effects/Color Adjustments/Color Correction (Curves, Saturation)")]
