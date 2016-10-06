@@ -45,6 +45,10 @@ public class PlayerShooting : MonoBehaviour {
 	}
 
 
+	public void Shoot(Vector3 dir) {
+		
+	}
+
 	void Shoot() {
 		timer = 0f;
 

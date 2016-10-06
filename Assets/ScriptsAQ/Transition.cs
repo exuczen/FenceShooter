@@ -58,6 +58,13 @@ namespace Utility {
 			this.inflectionPt0 = inflPoint;
 		}
 
+		public void SetSymmInflectedData(int symmPow1, int symmPow2, float inflPoint)
+		{
+			this.n = symmPow1;
+			this.m = symmPow2;
+			this.inflectionPt0 = inflPoint;
+		}
+
 		public void SetAsymInflectedData(int N, int M, int n, int m,
 										 float xMax, float yMax, float inflPtNorm0, float inflPtNorm1) {
 			this.N = N;
@@ -95,8 +102,8 @@ namespace Utility {
 		public float GetTransition(float timePassed, float duration) {
 			switch (type) {
 
-				case TransitionType.ASYMETRIC_POLYNOM32:
-				return Maths.GetTransitionAsymPolynom32(timePassed, duration, n, m);
+				case TransitionType.SYMMETRIC_INFLECTED:
+					return Maths.GetTransitionSymmInflected(timePassed, duration, inflectionPt0, n, m);
 				case TransitionType.ASYMETRIC_INFLECTED:
 				return Maths.GetTransitionAsymInflected(timePassed, duration, N, M, n, m,
 														xMax, yMax, inflectionPt0, inflectionPt1);
@@ -365,14 +372,14 @@ namespace Utility {
 				transition.type = asymType;
 				switch (asymType) {
 					case TransitionType.ASYMETRIC_INFLECTED:
-					transition.SetAsymInflectedData((int)plist[0], (int)plist[1], (int)plist[2], (int)plist[3],
-													plist[4], plist[5], plist[6], plist[7]);
+						transition.SetAsymInflectedData((int)plist[0], (int)plist[1], (int)plist[2], (int)plist[3],
+															plist[4], plist[5], plist[6], plist[7]);
 					break;
 					case TransitionType.ASYMETRIC_NORMALISED:
-					transition.SetAsymNormalisedData((int)plist[0], (int)plist[1], plist[2]);
+						transition.SetAsymNormalisedData((int)plist[0], (int)plist[1], plist[2]);
 					break;
-					case TransitionType.ASYMETRIC_POLYNOM32:
-					transition.SetAsymPolynom32Data((int)plist[0], (int)plist[1]);
+					case TransitionType.SYMMETRIC_INFLECTED:
+						transition.SetSymmInflectedData((int)plist[0], (int)plist[1], plist[2]);
 					break;
 
 					default:

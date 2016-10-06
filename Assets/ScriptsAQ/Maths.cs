@@ -15,8 +15,8 @@ namespace Utility {
 		COS_IN_PI_RANGE,
 		COS_IN_2PI_RANGE,
 		ASYMETRIC_NORMALISED,
-		ASYMETRIC_POLYNOM32,
-		ASYMETRIC_INFLECTED
+		ASYMETRIC_INFLECTED,
+		SYMMETRIC_INFLECTED,
 	};
 
 	public static class Maths {
@@ -50,6 +50,42 @@ namespace Utility {
 			return -2 * PowF(x, n) + 3 * PowF(x, m);
 		}
 
+		public static float GetTransitionAsymNormalised(float timePassed, float duration, float inflectionPointNormalized, int n, int m) {
+			float x0 = inflectionPointNormalized * duration;
+			float denomPart = m * x0 - n * (x0 - duration);
+			float denom, shift;
+
+			//    float a = m/(PowF(x0, n-1)*denomPart);
+			//    float b = n/(PowF(x0-duration, m-1)*denomPart);
+			//    printf("n=%i m=%i x0=%f duration=%f a=%.10f b=%.10f\n",n,m,x0,duration,a,b);
+
+			if (timePassed < x0)
+			{
+				denom = PowF(x0, n - 1) * denomPart;
+				shift = m * PowF(timePassed, n) / denom;
+			}
+			else
+			{
+				denom = PowF(x0 - duration, m - 1) * denomPart;
+				shift = n * PowF(timePassed - duration, m) / denom + 1;
+			}
+			return shift;
+		}
+
+		public static float GetTransitionSymmInflected(float timePassed, float duration, float inflPtNorm, int n, int m) {
+			float halfDuration = duration * 0.5f;
+			float shift;
+			if (timePassed < halfDuration)
+			{
+				shift = GetTransitionAsymNormalised(timePassed, halfDuration, inflPtNorm, n, m);
+			}
+			else
+			{
+				shift = (1.0f - GetTransitionAsymNormalised(timePassed - halfDuration, halfDuration, 1.0f - inflPtNorm, m, n));
+			}
+			return shift;
+		}
+
 		public static float GetTransitionAsymInflected(float timePassed, float duration,
 													   int N, int M, int n, int m, float xMax, float yMax,
 													   float inflPtNorm0, float inflPtNorm1) {
@@ -70,24 +106,7 @@ namespace Utility {
 			return shift;
 		}
 
-		public static float GetTransitionAsymNormalised(float timePassed, float duration, float inflectionPointNormalized, int n, int m) {
-			float x0 = inflectionPointNormalized * duration;
-			float denomPart = m * x0 - n * (x0 - duration);
-			float denom, shift;
 
-			//    float a = m/(PowF(x0, n-1)*denomPart);
-			//    float b = n/(PowF(x0-duration, m-1)*denomPart);
-			//    printf("n=%i m=%i x0=%f duration=%f a=%.10f b=%.10f\n",n,m,x0,duration,a,b);
-
-			if (timePassed < x0) {
-				denom = PowF(x0, n - 1) * denomPart;
-				shift = m * PowF(timePassed, n) / denom;
-			} else {
-				denom = PowF(x0 - duration, m - 1) * denomPart;
-				shift = n * PowF(timePassed - duration, m) / denom + 1;
-			}
-			return shift;
-		}
 
 		public static float GetTransition(TransitionType transitionType, float timePassed, float duration, int power) {
 			float shift;
