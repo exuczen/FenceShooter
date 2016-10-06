@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
-namespace CompleteProject
+namespace SurvivalShooter
 {
 	public class MixLevels : MonoBehaviour
 	{

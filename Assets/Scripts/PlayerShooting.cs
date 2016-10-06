@@ -18,7 +18,7 @@ namespace FenceShooter
 		LineRenderer gunLine;                           // Reference to the line renderer.
 		AudioSource gunAudio;                           // Reference to the audio source.
 		Light gunLight;                                 // Reference to the light component.
-		//public Light faceLight;                             // Duh
+														//public Light faceLight;                             // Duh
 		float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
 

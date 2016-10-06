@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
-namespace CompleteProject
+namespace SurvivalShooter
 {
 	public class PlayerShooting : MonoBehaviour
 	{

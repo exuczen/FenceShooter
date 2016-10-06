@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-namespace CompleteProject
+namespace SurvivalShooter
 {
 	public class VolumeHandler : MonoBehaviour
 	{

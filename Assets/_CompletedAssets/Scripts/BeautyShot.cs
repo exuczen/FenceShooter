@@ -7,7 +7,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 
-namespace CompleteProject
+namespace SurvivalShooter
 {
 	public class BeautyShot : MonoBehaviour
 	{

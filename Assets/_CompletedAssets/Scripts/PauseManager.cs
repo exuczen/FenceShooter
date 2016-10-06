@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-namespace CompleteProject
+namespace SurvivalShooter
 {
 	public class PauseManager : MonoBehaviour
 	{

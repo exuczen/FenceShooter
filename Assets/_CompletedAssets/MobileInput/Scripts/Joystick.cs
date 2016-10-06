@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnitySampleAssets.CrossPlatformInput;
-namespace CompleteProject
+
+namespace UnitySampleAssets.CrossPlatformInput
 {
 	public class Joystick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IDragHandler
 	{
