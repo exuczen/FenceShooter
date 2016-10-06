@@ -100,7 +100,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44767297}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7b87724ff82d244097c42a3a57ff588, type: 3}
   m_Name: 
@@ -114,7 +114,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44767297}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -1813,7 +1813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11418494, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11404368, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
       propertyPath: m_Enabled

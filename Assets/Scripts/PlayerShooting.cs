@@ -46,7 +46,7 @@ namespace FenceShooter
 			if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
 			{
 				// ... shoot the gun.
-				Shoot();
+				Shoot(transform.forward);
 			}
 #else
             // If there is input on the shoot direction stick and it's time to fire...
@@ -74,12 +74,8 @@ namespace FenceShooter
 		}
 
 
-		public void Shoot(Vector3 dir)
-		{
 
-		}
-
-		void Shoot()
+		public void Shoot(Vector3 shootDir)
 		{
 			// Reset the timer.
 			timer = 0f;
@@ -101,7 +97,7 @@ namespace FenceShooter
 
 			// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
 			shootRay.origin = transform.position;
-			shootRay.direction = transform.forward;
+			shootRay.direction = shootDir;
 
 			// Perform the raycast against gameobjects on the shootable layer and if it hits something...
 			if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
