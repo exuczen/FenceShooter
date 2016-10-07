@@ -728,7 +728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2132000883}
   smoothing: 5
-  soundVolume: 0.427
+  soundVolume: 0.003
 --- !u!1001 &542358204
 Prefab:
   m_ObjectHideFlags: 0
@@ -779,6 +779,26 @@ Prefab:
     - target: {fileID: 186528, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 186378, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150046, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134764, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136040, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 165982, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
@@ -929,6 +949,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!4 &766109284 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 420264, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+  m_PrefabInternal: {fileID: 2132000876}
 --- !u!1 &845451500
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2132000883}
   smoothing: 5
-  soundVolume: 0.419
+  soundVolume: 0.003
 --- !u!81 &845451502
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1841,6 +1865,14 @@ Prefab:
       propertyPath: faceLight
       value: 
       objectReference: {fileID: 1173315244}
+    - target: {fileID: 11418494, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 766109284}
+    - target: {fileID: 11418494, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
+      propertyPath: gunBarrelEnd
+      value: 
+      objectReference: {fileID: 2132000877}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61b4b81d56622ed40918bbd679dafa93, type: 2}
   m_IsPrefabParent: 0
