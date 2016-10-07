@@ -14,8 +14,8 @@ namespace FenceShooter
 		private Animator anim;
 		private NavMeshAgent navMeshAgent;
 		private Transform targetedEnemy;
-		private Ray shootRay;
-		private RaycastHit shootHit;
+		//private Ray shootRay;
+		//private RaycastHit shootHit;
 		private bool walking;
 		private bool enemyClicked;
 		private float nextFire;
@@ -36,14 +36,15 @@ namespace FenceShooter
 			{
 				if (Physics.Raycast(ray, out hit, 100))
 				{
-					if (hit.collider.CompareTag("Enemy"))
+					if (hit.collider.CompareTag("Enemy")) 
 					{
 						targetedEnemy = hit.transform;
-						enemyClicked = true;
-						Utils.Log("enemy hit");
-					}
+						if (!targetedEnemy.GetComponent<EnemyHealth>().isDead) {
+							enemyClicked = true;
+						}
+					} 
 
-					else
+					else 
 					{
 						walking = true;
 						enemyClicked = false;
@@ -76,7 +77,7 @@ namespace FenceShooter
 			if (targetedEnemy == null)
 				return;
 			navMeshAgent.destination = targetedEnemy.position;
-			if (navMeshAgent.remainingDistance >= shootDistance)
+			if (navMeshAgent.remainingDistance >= shootDistance) 
 			{
 
 				navMeshAgent.Resume();
@@ -92,6 +93,10 @@ namespace FenceShooter
 				{
 					nextFire = Time.time + shootRate;
 					shootingScript.Shoot(dirToShoot);
+					if (targetedEnemy.GetComponent<EnemyHealth>().isDead)
+					{
+						enemyClicked = false;
+					}
 				}
 				navMeshAgent.Stop();
 				walking = false;

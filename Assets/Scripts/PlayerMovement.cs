@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
+using Utility;
 
 namespace FenceShooter
 {
@@ -9,6 +10,8 @@ namespace FenceShooter
 
 		Vector3 movement;                   // The vector to store the direction of the player's movement.
 		Animator anim;                      // Reference to the animator component.
+		private NavMeshAgent navMeshAgent;
+		private bool navMeshWalking;
 		Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 #if !MOBILE_INPUT
 		int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
@@ -25,9 +28,28 @@ namespace FenceShooter
 			// Set up references.
 			anim = GetComponent<Animator>();
 			playerRigidbody = GetComponent<Rigidbody>();
+			navMeshAgent = GetComponent<NavMeshAgent>();
 		}
 
-
+		void Update() {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if (Input.GetButtonDown("Fire2")) {
+				RaycastHit hit;
+				if (Physics.Raycast(ray, out hit, 100)) {
+					Utils.Log("navMeshAgent new destination");
+					navMeshAgent.destination = hit.point;
+					navMeshAgent.Resume();
+				} else {
+					Utils.Log("raycast missed");
+				}
+			}
+			if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance) {
+				if (!navMeshAgent.hasPath || Mathf.Abs(navMeshAgent.velocity.sqrMagnitude) < float.Epsilon)
+					navMeshWalking = false;
+			} else {
+				navMeshWalking = true;
+			}
+		}
 		void FixedUpdate()
 		{
 			// Store the input axes.
@@ -36,6 +58,14 @@ namespace FenceShooter
 			float h = Input.GetAxisRaw("Horizontal");
 			float v = Input.GetAxisRaw("Vertical");
 
+			// Create a boolean that is true if either of the input axes is non-zero.
+			bool axisWalking = h != 0f || v != 0f;
+			if (axisWalking && (navMeshWalking || navMeshAgent.hasPath)) {
+				navMeshAgent.Stop();
+				navMeshAgent.ResetPath();
+				navMeshWalking = false;
+			}
+
 			// Move the player around the scene.
 			Move(h, v);
 
@@ -43,7 +73,9 @@ namespace FenceShooter
 			Turning();
 
 			// Animate the player.
-			Animating(h, v);
+			// Tell the animator whether or not the player is walking.
+			//Utils.Log("axisWalking=" + axisWalking + " navMeshWalking=" + navMeshWalking);
+			anim.SetBool("IsWalking", axisWalking || navMeshWalking);
 		}
 
 		void Move(float h, float v)
@@ -68,7 +100,7 @@ namespace FenceShooter
 			RaycastHit floorHit;
 
 			// Perform the raycast and if it hits something on the floor layer...
-			if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
+			if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask)) 
 			{
 				// Create a vector from the player to the point on the floor the raycast from the mouse hit.
 				Vector3 playerToMouse = floorHit.point - transform.position;
@@ -103,13 +135,5 @@ namespace FenceShooter
 #endif
 		}
 
-		void Animating(float h, float v)
-		{
-			// Create a boolean that is true if either of the input axes is non-zero.
-			bool walking = h != 0f || v != 0f;
-
-			// Tell the animator whether or not the player is walking.
-			anim.SetBool("IsWalking", walking);
-		}
 	}
 }
