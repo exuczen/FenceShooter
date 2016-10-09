@@ -14,18 +14,22 @@ namespace FenceShooter
 		Ray shootRay;                                   // A ray from the gun end forwards.
 		RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
 		int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+		int floorMask;
+		int enemyMask;
 		ParticleSystem gunParticles;                    // Reference to the particle system.
 		LineRenderer gunLine;                           // Reference to the line renderer.
 		AudioSource gunAudio;                           // Reference to the audio source.
 		Light gunLight;                                 // Reference to the light component.
 		public Light faceLight;                             // Duh
 		float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
-
+		Ray camRay;
 
 		void Awake()
 		{
 			// Create a layer mask for the Shootable layer.
 			shootableMask = LayerMask.GetMask("Shootable");
+			floorMask = LayerMask.GetMask("Floor");
+			enemyMask = LayerMask.GetMask("Enemy");
 
 			// Set up the references.
 			gunParticles = GetComponent<ParticleSystem>();
@@ -33,9 +37,12 @@ namespace FenceShooter
 			gunAudio = GetComponent<AudioSource>();
 			gunLight = GetComponent<Light>();
 			//faceLight = GetComponentInChildren<Light> ();
+			camRay.origin = Vector3.zero;
+			camRay.direction = Vector3.zero;
+
 		}
 
-
+		
 		void Update()
 		{
 			// Add the time since Update was last called to the timer.
@@ -45,9 +52,11 @@ namespace FenceShooter
 			// If the Fire1 button is being press and it's time to fire...
 			if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
 			{
+				camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 				// ... shoot the gun.
 				Shoot(transform.forward);
 			}
+			Debug.DrawRay(camRay.origin, camRay.direction * 100);
 #else
             // If there is input on the shoot direction stick and it's time to fire...
             if ((CrossPlatformInputManager.GetAxisRaw("Mouse X") != 0 || CrossPlatformInputManager.GetAxisRaw("Mouse Y") != 0) && timer >= timeBetweenBullets)
@@ -97,10 +106,10 @@ namespace FenceShooter
 
 			// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
 			shootRay.origin = transform.position;
-			shootRay.direction = shootDir;
+			shootRay.direction = transform.forward;
 
 			// Perform the raycast against gameobjects on the shootable layer and if it hits something...
-			if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
+			if (Physics.Raycast(shootRay, out shootHit, range, shootableMask | enemyMask))
 			{
 				// Try and find an EnemyHealth script on the gameobject hit.
 				EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
