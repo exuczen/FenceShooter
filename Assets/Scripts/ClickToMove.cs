@@ -2,10 +2,8 @@
 using System.Collections;
 using Utility;
 
-namespace FenceShooter
-{
-	public class ClickToMove : MonoBehaviour
-	{
+namespace FenceShooter {
+	public class ClickToMove : MonoBehaviour {
 
 		public float shootDistance = 10f;
 		public float shootRate = .5f;
@@ -21,31 +19,23 @@ namespace FenceShooter
 		private float nextFire;
 
 		// Use this for initialization
-		void Awake()
-		{
+		void Awake() {
 			anim = GetComponent<Animator>();
 			navMeshAgent = GetComponent<NavMeshAgent>();
 		}
 
 		// Update is called once per frame
-		void Update()
-		{
+		void Update() {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
-			if (Input.GetButtonDown("Fire2"))
-			{
-				if (Physics.Raycast(ray, out hit, 100))
-				{
-					if (hit.collider.CompareTag("Enemy")) 
-					{
+			if (Input.GetButtonDown("Fire2")) {
+				if (Physics.Raycast(ray, out hit, 100)) {
+					if (hit.collider.CompareTag("Enemy")) {
 						targetedEnemy = hit.transform;
 						if (!targetedEnemy.GetComponent<EnemyHealth>().isDead) {
 							enemyClicked = true;
 						}
-					} 
-
-					else 
-					{
+					} else {
 						walking = true;
 						enemyClicked = false;
 						navMeshAgent.destination = hit.point;
@@ -54,47 +44,38 @@ namespace FenceShooter
 				}
 			}
 
-			if (enemyClicked)
-			{
+			if (enemyClicked) {
 				MoveAndShoot();
 			}
 
-			if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-			{
+			if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance) {
 				if (!navMeshAgent.hasPath || Mathf.Abs(navMeshAgent.velocity.sqrMagnitude) < float.Epsilon)
 					walking = false;
-			}
-			else
-			{
+			} else {
 				walking = true;
 			}
 
 			anim.SetBool("IsWalking", walking);
 		}
 
-		private void MoveAndShoot()
-		{
+		private void MoveAndShoot() {
 			if (targetedEnemy == null)
 				return;
 			navMeshAgent.destination = targetedEnemy.position;
-			if (navMeshAgent.remainingDistance >= shootDistance) 
-			{
+			if (navMeshAgent.remainingDistance >= shootDistance) {
 
 				navMeshAgent.Resume();
 				walking = true;
 			}
 
-			if (navMeshAgent.remainingDistance <= shootDistance)
-			{
+			if (navMeshAgent.remainingDistance <= shootDistance) {
 
 				transform.LookAt(targetedEnemy);
 				Vector3 dirToShoot = targetedEnemy.transform.position - transform.position;
-				if (Time.time > nextFire)
-				{
+				if (Time.time > nextFire) {
 					nextFire = Time.time + shootRate;
 					shootingScript.Shoot(dirToShoot);
-					if (targetedEnemy.GetComponent<EnemyHealth>().isDead)
-					{
+					if (targetedEnemy.GetComponent<EnemyHealth>().isDead) {
 						enemyClicked = false;
 					}
 				}

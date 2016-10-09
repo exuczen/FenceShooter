@@ -2,25 +2,20 @@
 using System.Collections;
 using UnityEngine.UI;
 
-namespace SurvivalShooter
-{
-	public class VolumeHandler : MonoBehaviour
-	{
+namespace SurvivalShooter {
+	public class VolumeHandler : MonoBehaviour {
 
 		// Use this for initialization
-		void Start()
-		{
+		void Start() {
 			if (GameObject.Find("EffectsSlider"))
 				GameObject.Find("EffectsSlider").GetComponent<Slider>().onValueChanged.AddListener(SetVolume);
 		}
 
-		void SetVolume(float volume)
-		{
+		void SetVolume(float volume) {
 			GetComponent<AudioSource>().volume = volume;
 		}
 
-		void OnDestroy()
-		{
+		void OnDestroy() {
 			if (GameObject.Find("EffectsSlider"))
 				GameObject.Find("EffectsSlider").GetComponent<Slider>().onValueChanged.RemoveListener(SetVolume);
 		}

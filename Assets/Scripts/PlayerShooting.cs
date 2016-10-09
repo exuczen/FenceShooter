@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
-namespace FenceShooter
-{
-	public class PlayerShooting : MonoBehaviour
-	{
+namespace FenceShooter {
+	public class PlayerShooting : MonoBehaviour {
 		public int damagePerShot = 20;                  // The damage inflicted by each bullet.
 		public float timeBetweenBullets = 0.15f;        // The time between each shot.
 		public float range = 100f;                      // The distance the gun can fire.
@@ -24,8 +22,7 @@ namespace FenceShooter
 		float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 		Ray camRay;
 
-		void Awake()
-		{
+		void Awake() {
 			// Create a layer mask for the Shootable layer.
 			shootableMask = LayerMask.GetMask("Shootable");
 			floorMask = LayerMask.GetMask("Floor");
@@ -42,16 +39,14 @@ namespace FenceShooter
 
 		}
 
-		
-		void Update()
-		{
+
+		void Update() {
 			// Add the time since Update was last called to the timer.
 			timer += Time.deltaTime;
 
 #if !MOBILE_INPUT
 			// If the Fire1 button is being press and it's time to fire...
-			if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-			{
+			if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0) {
 				camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 				// ... shoot the gun.
 				Shoot(transform.forward);
@@ -66,16 +61,14 @@ namespace FenceShooter
             }
 #endif
 			// If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-			if (timer >= timeBetweenBullets * effectsDisplayTime)
-			{
+			if (timer >= timeBetweenBullets * effectsDisplayTime) {
 				// ... disable the effects.
 				DisableEffects();
 			}
 		}
 
 
-		public void DisableEffects()
-		{
+		public void DisableEffects() {
 			// Disable the line renderer and the light.
 			gunLine.enabled = false;
 			faceLight.enabled = false;
@@ -84,8 +77,7 @@ namespace FenceShooter
 
 
 
-		public void Shoot(Vector3 shootDir)
-		{
+		public void Shoot(Vector3 shootDir) {
 			// Reset the timer.
 			timer = 0f;
 
@@ -109,15 +101,13 @@ namespace FenceShooter
 			shootRay.direction = transform.forward;
 
 			// Perform the raycast against gameobjects on the shootable layer and if it hits something...
-			if (Physics.Raycast(shootRay, out shootHit, range, shootableMask | enemyMask))
-			{
+			if (Physics.Raycast(shootRay, out shootHit, range, shootableMask | enemyMask)) {
 				// Try and find an EnemyHealth script on the gameobject hit.
 				EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
 				//if (shootHit.collider.CompareTag("Enemy")) { }
 
 				// If the EnemyHealth component exist...
-				if (enemyHealth != null)
-				{
+				if (enemyHealth != null) {
 					// ... the enemy should take damage.
 					enemyHealth.TakeDamage(damagePerShot, shootHit.point);
 				}
@@ -126,8 +116,7 @@ namespace FenceShooter
 				gunLine.SetPosition(1, shootHit.point);
 			}
 			// If the raycast didn't hit anything on the shootable layer...
-			else
-			{
+			else {
 				// ... set the second position of the line renderer to the fullest extent of the gun's range.
 				gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
 			}

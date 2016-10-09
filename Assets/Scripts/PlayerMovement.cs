@@ -2,12 +2,10 @@
 using UnitySampleAssets.CrossPlatformInput;
 using Utility;
 
-namespace FenceShooter
-{
-	public class PlayerMovement : MonoBehaviour
-	{
+namespace FenceShooter {
+	public class PlayerMovement : MonoBehaviour {
 		public float speed = 6f;            // The speed that the player will move at.
-		//public Transform gun;
+											//public Transform gun;
 		public Transform gunBarrelEnd;
 		//public GameObject cannonMark;
 		//public Transform cannonTransform;
@@ -18,7 +16,7 @@ namespace FenceShooter
 		private NavMeshAgent navMeshAgent;
 		private bool navMeshWalking;
 		Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
-		//LineRenderer cannonLine;
+											//LineRenderer cannonLine;
 #if !MOBILE_INPUT
 		int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 		int shootableMask;
@@ -26,14 +24,13 @@ namespace FenceShooter
 		float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 #endif
 
-		void Awake()
-		{
+		void Awake() {
 #if !MOBILE_INPUT
 			// Create a layer mask for the floor layer.
 			floorMask = LayerMask.GetMask("Floor");
 			shootableMask = LayerMask.GetMask("Shootable");
 			enemyMask = LayerMask.GetMask("Enemy");
-			Utils.Log("floorMask=" + floorMask + " shootableMask=" + shootableMask+" enemyMask="+enemyMask);
+			Utils.Log("floorMask=" + floorMask + " shootableMask=" + shootableMask + " enemyMask=" + enemyMask);
 #endif
 
 			// Set up references.
@@ -64,8 +61,7 @@ namespace FenceShooter
 				}
 			}
 		}
-		void FixedUpdate()
-		{
+		void FixedUpdate() {
 			// Store the input axes.
 			//float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 			//float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
@@ -92,8 +88,7 @@ namespace FenceShooter
 			anim.SetBool("IsWalking", axisWalking || navMeshWalking);
 		}
 
-		void Move(float h, float v)
-		{
+		void Move(float h, float v) {
 			// Set the movement vector based on the axis input.
 			movement.Set(h, 0f, v);
 
@@ -104,18 +99,16 @@ namespace FenceShooter
 			playerRigidbody.MovePosition(transform.position + movement);
 		}
 
-		void Turning()
-		{
+		void Turning() {
 #if !MOBILE_INPUT
 			// Create a ray from the mouse cursor on screen in the direction of the camera.
 			Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-			
+
 			// Create a RaycastHit variable to store information about what was hit by the ray.
 			RaycastHit floorHit;
 
 			// Perform the raycast and if it hits something on the floor layer...
-			if (Physics.Raycast(camRay, out floorHit, camRayLength, enemyMask | floorMask | shootableMask)) 
-			{
+			if (Physics.Raycast(camRay, out floorHit, camRayLength, enemyMask | floorMask | shootableMask)) {
 				touchMark.transform.position = floorHit.point;
 
 				// Create a vector from the player to the point on the floor the raycast from the mouse hit.

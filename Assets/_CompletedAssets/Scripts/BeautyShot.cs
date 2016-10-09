@@ -7,12 +7,9 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 
-namespace SurvivalShooter
-{
-	public class BeautyShot : MonoBehaviour
-	{
-		public string generateFilename()
-		{
+namespace SurvivalShooter {
+	public class BeautyShot : MonoBehaviour {
+		public string generateFilename() {
 			//var frame = Backstage.Director.PlayheadInFrames;
 			//var frame = Backstage.frameCount;
 			var frame = Time.frameCount;
@@ -31,8 +28,7 @@ namespace SurvivalShooter
 
 		public bool captureUsingScreenshot = false;
 
-		public enum Supersample
-		{
+		public enum Supersample {
 			None = 1,
 			Two = 2,
 			Four = 4,
@@ -43,8 +39,7 @@ namespace SurvivalShooter
 
 		public Supersample supersampleScreenshot = Supersample.None;
 
-		void Start()
-		{
+		void Start() {
 			if (!Application.isPlaying)
 				return;
 
@@ -57,8 +52,7 @@ namespace SurvivalShooter
 			var path = "BeautyShots/{0}/{1}";
 
 			//	"640 k ought to be enough for anybody."
-			for (var count = 0; count < 640000; count++)
-			{
+			for (var count = 0; count < 640000; count++) {
 				_folder = string.Format(path, sceneName, count);
 				if (!System.IO.Directory.Exists(_folder))
 					break;
@@ -70,8 +64,7 @@ namespace SurvivalShooter
 		}
 
 #if UNITY_EDITOR
-		private byte[] captureCam(Camera cam, int w, int h)
-		{
+		private byte[] captureCam(Camera cam, int w, int h) {
 			var oldcullmask = cam.cullingMask;
 			cam.cullingMask = layerMask;
 			RenderTexture rt = RenderTexture.GetTemporary(w, h);
@@ -89,30 +82,24 @@ namespace SurvivalShooter
 #endif
 
 #if UNITY_EDITOR
-		void OnPostRender()
-		{
+		void OnPostRender() {
 			var filename = _folder + generateFilename();
-			if (captureUsingScreenshot == false)
-			{
+			if (captureUsingScreenshot == false) {
 #if !UNITY_WEBPLAYER
 				var cam = Camera.current;
-				if (cam != null)
-				{
+				if (cam != null) {
 					System.IO.File.WriteAllBytes(filename, captureCam(cam, Screen.width, Screen.height));
 					Debug.Log("File written");
-				}
-				else
+				} else
 					Debug.LogError("Cam is null?");
 #endif
-			}
-			else
+			} else
 				Application.CaptureScreenshot(filename, (int)supersampleScreenshot);
 
 			if (Time.frameCount % frameRate == 0)
 				Debug.Log(string.Format("{0} second rendered, {1} total frames.", Time.frameCount / Time.captureFramerate, Time.frameCount));
 
-			if (Time.frameCount > numFrames)
-			{
+			if (Time.frameCount > numFrames) {
 				Debug.Log(string.Format("Capture done, {0} second rendered, {1} total frames.", Time.frameCount / Time.captureFramerate, Time.frameCount));
 				Application.runInBackground = false;
 				EditorApplication.isPlaying = false;

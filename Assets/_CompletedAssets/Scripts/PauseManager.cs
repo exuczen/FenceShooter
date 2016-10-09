@@ -5,53 +5,40 @@ using UnityEngine.Audio;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-namespace SurvivalShooter
-{
-	public class PauseManager : MonoBehaviour
-	{
+namespace SurvivalShooter {
+	public class PauseManager : MonoBehaviour {
 
 		public AudioMixerSnapshot paused;
 		public AudioMixerSnapshot unpaused;
 
 		Canvas canvas;
 
-		void Start()
-		{
+		void Start() {
 			canvas = GetComponent<Canvas>();
 		}
 
-		void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.Escape))
-			{
+		void Update() {
+			if (Input.GetKeyDown(KeyCode.Escape)) {
 				canvas.enabled = !canvas.enabled;
 				Pause();
 			}
 		}
 
-		public void Pause()
-		{
+		public void Pause() {
 			Time.timeScale = Time.timeScale == 0 ? 1 : 0;
 			Lowpass();
 
 		}
 
-		void Lowpass()
-		{
-			if (Time.timeScale == 0)
-			{
+		void Lowpass() {
+			if (Time.timeScale == 0) {
 				paused.TransitionTo(.01f);
-			}
-
-			else
-
-			{
+			} else {
 				unpaused.TransitionTo(.01f);
 			}
 		}
 
-		public void Quit()
-		{
+		public void Quit() {
 #if UNITY_EDITOR
 			EditorApplication.isPlaying = false;
 #else

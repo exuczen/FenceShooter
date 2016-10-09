@@ -58,8 +58,7 @@ namespace Utility {
 			this.inflectionPt0 = inflPoint;
 		}
 
-		public void SetSymmInflectedData(int symmPow1, int symmPow2, float inflPoint)
-		{
+		public void SetSymmInflectedData(int symmPow1, int symmPow2, float inflPoint) {
 			this.n = symmPow1;
 			this.m = symmPow2;
 			this.inflectionPt0 = inflPoint;
@@ -103,7 +102,7 @@ namespace Utility {
 			switch (type) {
 
 				case TransitionType.SYMMETRIC_INFLECTED:
-					return Maths.GetTransitionSymmInflected(timePassed, duration, inflectionPt0, n, m);
+				return Maths.GetTransitionSymmInflected(timePassed, duration, inflectionPt0, n, m);
 				case TransitionType.ASYMETRIC_INFLECTED:
 				return Maths.GetTransitionAsymInflected(timePassed, duration, N, M, n, m,
 														xMax, yMax, inflectionPt0, inflectionPt1);
@@ -207,14 +206,11 @@ namespace Utility {
 
 		float waitAfterFinishTime = 0.0f;
 		bool drawPlot = false;
-		public bool drawTransitionPlot
-		{
-			get
-			{
+		public bool drawTransitionPlot {
+			get {
 				return drawPlot;
 			}
-			set
-			{
+			set {
 				plotPoints = new Vector3[plotPointsMaxNumber];
 				plotPointCounter = 0;
 				plotPoints[plotPointCounter++] = Vector3.zero;
@@ -372,14 +368,14 @@ namespace Utility {
 				transition.type = asymType;
 				switch (asymType) {
 					case TransitionType.ASYMETRIC_INFLECTED:
-						transition.SetAsymInflectedData((int)plist[0], (int)plist[1], (int)plist[2], (int)plist[3],
-															plist[4], plist[5], plist[6], plist[7]);
+					transition.SetAsymInflectedData((int)plist[0], (int)plist[1], (int)plist[2], (int)plist[3],
+														plist[4], plist[5], plist[6], plist[7]);
 					break;
 					case TransitionType.ASYMETRIC_NORMALISED:
-						transition.SetAsymNormalisedData((int)plist[0], (int)plist[1], plist[2]);
+					transition.SetAsymNormalisedData((int)plist[0], (int)plist[1], plist[2]);
 					break;
 					case TransitionType.SYMMETRIC_INFLECTED:
-						transition.SetSymmInflectedData((int)plist[0], (int)plist[1], plist[2]);
+					transition.SetSymmInflectedData((int)plist[0], (int)plist[1], plist[2]);
 					break;
 
 					default:

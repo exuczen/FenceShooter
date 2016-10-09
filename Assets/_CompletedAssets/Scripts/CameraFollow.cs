@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace SurvivalShooter
-{
-	public class CameraFollow : MonoBehaviour
-	{
+namespace SurvivalShooter {
+	public class CameraFollow : MonoBehaviour {
 		public Transform target;            // The position that that camera will be following.
 		public float smoothing = 5f;        // The speed with which the camera will be following.
 		[Tooltip("AudioListener.volume"), Range(0f, 1f)]
@@ -13,19 +11,16 @@ namespace SurvivalShooter
 		Vector3 offset;                     // The initial offset from the target.
 
 
-		void Start()
-		{
+		void Start() {
 			// Calculate the initial offset.
 			offset = transform.position - target.position;
 		}
 
 
-		void FixedUpdate()
-		{
+		void FixedUpdate() {
 			// Set AudioListener's volume
 #if UNITY_EDITOR
-			if (AudioListener.volume != soundVolume)
-			{
+			if (AudioListener.volume != soundVolume) {
 				AudioListener.volume = soundVolume;
 			}
 #endif

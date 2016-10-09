@@ -633,19 +633,15 @@ namespace Utility {
 			return false;
 		}
 
-		public static Color32 Color32Zero
-		{
-			get
-			{
+		public static Color32 Color32Zero {
+			get {
 				return new Color32(0, 0, 0, 0);
 			}
 		}
 
 
-		public static Color32 Color32White
-		{
-			get
-			{
+		public static Color32 Color32White {
+			get {
 				return new Color32(255, 255, 255, 255);
 			}
 		}

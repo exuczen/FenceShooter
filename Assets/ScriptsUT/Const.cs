@@ -5,37 +5,32 @@ namespace Utility {
 
 	public class Const {
 
-		public enum ResFolder
-		{
+		public enum ResFolder {
 			Res256,
 			Res512,
 			Res1024,
 		}
 
-		public enum ButtonName
-		{
+		public enum ButtonName {
 			ButtonOK,
 			ButtonYes,
 			ButtonNo,
 			Whatever
 		}
 
-		public enum DialogId
-		{
+		public enum DialogId {
 			Info,
 			Restart,
 			Licences
 		}
 
-		public enum Axis
-		{
+		public enum Axis {
 			None,
 			Hori,
 			Verti
 		}
 
-		public enum Anchor
-		{
+		public enum Anchor {
 			Bottom = 1 << 1,
 			Top = 1 << 2,
 			Left = 1 << 3,
@@ -43,15 +38,13 @@ namespace Utility {
 			Middle = 1 << 5,
 		}
 
-		public enum ScreenName
-		{
+		public enum ScreenName {
 			GameScene,
 			CupScreen,
 			MainMenu
 		}
 
-		public enum AppState
-		{
+		public enum AppState {
 			None,
 			MainMenu,
 			InGame,
@@ -59,8 +52,7 @@ namespace Utility {
 			CupShow
 		}
 
-		public enum ScreenState
-		{
+		public enum ScreenState {
 			FadeIn,
 			Loading,
 			Ready,

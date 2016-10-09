@@ -59,13 +59,10 @@ namespace Utility {
 			//    float b = n/(PowF(x0-duration, m-1)*denomPart);
 			//    printf("n=%i m=%i x0=%f duration=%f a=%.10f b=%.10f\n",n,m,x0,duration,a,b);
 
-			if (timePassed < x0)
-			{
+			if (timePassed < x0) {
 				denom = PowF(x0, n - 1) * denomPart;
 				shift = m * PowF(timePassed, n) / denom;
-			}
-			else
-			{
+			} else {
 				denom = PowF(x0 - duration, m - 1) * denomPart;
 				shift = n * PowF(timePassed - duration, m) / denom + 1;
 			}
@@ -75,12 +72,9 @@ namespace Utility {
 		public static float GetTransitionSymmInflected(float timePassed, float duration, float inflPtNorm, int n, int m) {
 			float halfDuration = duration * 0.5f;
 			float shift;
-			if (timePassed < halfDuration)
-			{
+			if (timePassed < halfDuration) {
 				shift = GetTransitionAsymNormalised(timePassed, halfDuration, inflPtNorm, n, m);
-			}
-			else
-			{
+			} else {
 				shift = (1.0f - GetTransitionAsymNormalised(timePassed - halfDuration, halfDuration, 1.0f - inflPtNorm, m, n));
 			}
 			return shift;

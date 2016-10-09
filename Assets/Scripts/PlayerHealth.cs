@@ -4,10 +4,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 
-namespace FenceShooter
-{
-	public class PlayerHealth : MonoBehaviour
-	{
+namespace FenceShooter {
+	public class PlayerHealth : MonoBehaviour {
 		public int startingHealth = 100;                            // The amount of health the player starts the game with.
 		public int currentHealth;                                   // The current health the player has.
 		public Slider healthSlider;                                 // Reference to the UI's health bar.
@@ -25,8 +23,7 @@ namespace FenceShooter
 		bool damaged;                                               // True when the player gets damaged.
 
 
-		void Awake()
-		{
+		void Awake() {
 			// Setting up the references.
 			anim = GetComponent<Animator>();
 			playerAudio = GetComponent<AudioSource>();
@@ -38,17 +35,14 @@ namespace FenceShooter
 		}
 
 
-		void Update()
-		{
+		void Update() {
 			// If the player has just been damaged...
-			if (damaged)
-			{
+			if (damaged) {
 				// ... set the colour of the damageImage to the flash colour.
 				damageImage.color = flashColour;
 			}
 			// Otherwise...
-			else
-			{
+			else {
 				// ... transition the colour back to clear.
 				damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 			}
@@ -58,8 +52,7 @@ namespace FenceShooter
 		}
 
 
-		public void TakeDamage(int amount)
-		{
+		public void TakeDamage(int amount) {
 			// Set the damaged flag so the screen will flash.
 			damaged = true;
 
@@ -73,16 +66,14 @@ namespace FenceShooter
 			playerAudio.Play();
 
 			// If the player has lost all it's health and the death flag hasn't been set yet...
-			if (currentHealth <= 0 && !isDead)
-			{
+			if (currentHealth <= 0 && !isDead) {
 				// ... it should die.
 				Death();
 			}
 		}
 
 
-		void Death()
-		{
+		void Death() {
 			// Set the death flag so this function won't be called again.
 			isDead = true;
 
@@ -102,8 +93,7 @@ namespace FenceShooter
 		}
 
 
-		public void RestartLevel()
-		{
+		public void RestartLevel() {
 			// Reload the level that is currently loaded.
 			SceneManager.LoadScene(0);
 		}
