@@ -45,6 +45,7 @@ namespace FenceShooter {
 				if (Input.GetButtonDown("Fire2")) {
 					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 					RaycastHit hit;
+					//if (hit.collider.CompareTag("Enemy")) {}
 					if (Physics.Raycast(ray, out hit, 100)) {
 						Utils.Log("navMeshAgent new destination");
 						navMeshAgent.destination = hit.point;

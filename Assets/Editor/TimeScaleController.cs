@@ -12,14 +12,14 @@ public class TimeScaleController : EditorWindow {
 		TimeScaleController window = (TimeScaleController)EditorWindow.GetWindow(typeof(TimeScaleController));
 		window.titleContent.text = "Time Scaler";
 		window.Show();
-		window.minSize = new Vector2(10, 30);
-		window.position = new Rect(100, 200, 560, 32);
+		window.minSize = new Vector2(10, 50);
+		window.position = new Rect(100, 200, 560, 52);
 	}
 
 	void OnGUI() {
-		EditorGUILayout.BeginHorizontal();
 		Time.timeScale = EditorGUILayout.Slider(Time.timeScale, 0, 3);
-		if (position.width > 468) {
+		EditorGUILayout.BeginHorizontal();
+		if (position.width > 0) {
 			if (GUILayout.Button("1/4", GUILayout.Height(20), GUILayout.Width(42))) {
 				Time.timeScale = 0.25f;
 			}
