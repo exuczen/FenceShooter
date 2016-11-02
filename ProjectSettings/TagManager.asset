@@ -19,7 +19,7 @@ TagManager:
   - LightMask
   - Invisible
   - Enemy
-  - 
+  - Clickable
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: TapCatchall
+    uniqueID: 50471957
+    locked: 0
+  - name: HUD
+    uniqueID: 3946961509
     locked: 0

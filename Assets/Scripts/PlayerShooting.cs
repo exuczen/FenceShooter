@@ -46,10 +46,11 @@ namespace FenceShooter {
 
 #if !MOBILE_INPUT
 			// If the Fire1 button is being press and it's time to fire...
-			if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0) {
+			// if (Input.GetButton("Fire1")) {}
+			if (Input.GetMouseButton(0) && timer >= timeBetweenBullets && Time.timeScale != 0) {
 				camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 				// ... shoot the gun.
-				Shoot(transform.forward);
+				Shoot();
 			}
 			Debug.DrawRay(camRay.origin, camRay.direction * 100);
 #else
@@ -77,7 +78,7 @@ namespace FenceShooter {
 
 
 
-		public void Shoot(Vector3 shootDir) {
+		public void Shoot() {
 			// Reset the timer.
 			timer = 0f;
 

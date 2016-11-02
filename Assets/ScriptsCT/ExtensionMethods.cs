@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 using System.Collections;
+using System.Reflection;
 
 namespace CT {
 	public static class ExtensionMethodsForBounds {
@@ -596,4 +597,23 @@ namespace CT {
 			}
 		}
 	}
+
+	public static class ExtensionMethodsForDelegate {
+		public static string MethodFullName(this System.Delegate method) {
+			ParameterInfo[] methodParams = method.Method.GetParameters();
+			string paramsString = "(";
+			for (int i = 0; i < methodParams.Length - 1; i++) {
+				paramsString = System.String.Concat(paramsString, methodParams[i].ParameterType, ",");
+			}
+			paramsString = System.String.Concat(paramsString, methodParams[methodParams.Length - 1].ParameterType, ")");
+			string methodName = System.String.Concat(method.Method.ReflectedType.Namespace, ".",
+												method.Method.ReflectedType.Name, ".",
+												method.Method.Name,
+												paramsString);
+			return methodName;
+		}
+	}
+
+
+
 }

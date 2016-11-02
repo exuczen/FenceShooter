@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,11 +11,14 @@ namespace SurvivalShooter {
 
 		public AudioMixerSnapshot paused;
 		public AudioMixerSnapshot unpaused;
+		public EventTrigger touchTrigger;
 
 		Canvas canvas;
+		bool gamePaused;
 
 		void Start() {
 			canvas = GetComponent<Canvas>();
+			gamePaused = false;
 		}
 
 		void Update() {
@@ -25,13 +29,11 @@ namespace SurvivalShooter {
 		}
 
 		public void Pause() {
-			Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-			Lowpass();
-
-		}
-
-		void Lowpass() {
-			if (Time.timeScale == 0) {
+			gamePaused = !gamePaused;
+			if (touchTrigger)
+				touchTrigger.enabled = !gamePaused;
+			Time.timeScale = gamePaused ? 0 : 1;
+			if (gamePaused) {
 				paused.TransitionTo(.01f);
 			} else {
 				unpaused.TransitionTo(.01f);

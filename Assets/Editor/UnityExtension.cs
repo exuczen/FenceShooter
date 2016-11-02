@@ -14,8 +14,8 @@ public static class UnityExtension
 		CT.ExtensionUNITY.OpenScene("_CompletedAssets/Scenes/Level 01 5.x");
 	}
 
-	/// <summary>Shift+C to take a screenshot of game window</summary>
-	[MenuItem("Window/Capture Screenshot #p")]
+	/// <summary>Alt+C to take a screenshot of game window</summary>
+	[MenuItem("Window/Capture Screenshot &c")]
 	public static void TakeScreenshot() {
 		CT.ExtensionUNITY.Screenshot.Take();
 	}
