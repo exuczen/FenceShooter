@@ -2,13 +2,11 @@
 using UnitySampleAssets.CrossPlatformInput;
 using Utility;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class PlayerMovement : MonoBehaviour {
 		public float speed = 6f;            // The speed that the player will move at.
 											//public Transform gun;
 		public Transform gunBarrelEnd;
-		//public GameObject cannonMark;
-		//public Transform cannonTransform;
 		public GameObject touchMark;
 
 		Vector3 movement;                   // The vector to store the direction of the player's movement.
@@ -16,7 +14,6 @@ namespace FenceShooter {
 		private NavMeshAgent navMeshAgent;
 		private bool navMeshWalking;
 		Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
-											//LineRenderer cannonLine;
 #if !MOBILE_INPUT
 		int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 		int shootableMask;
@@ -37,7 +34,6 @@ namespace FenceShooter {
 			anim = GetComponent<Animator>();
 			playerRigidbody = GetComponent<Rigidbody>();
 			navMeshAgent = GetComponent<NavMeshAgent>();
-			//cannonLine = cannonTransform.GetComponent<LineRenderer>();
 		}
 
 		void Update() {
@@ -125,12 +121,6 @@ namespace FenceShooter {
 				// Set the player's rotation to this new rotation.
 				playerRigidbody.MoveRotation(newRotation);
 
-
-				//Vector3 cannonToHit = floorHit.point - cannonTransform.position;
-				//Quaternion cannonRotation = Quaternion.LookRotation(cannonToHit);
-				//cannonTransform.rotation = cannonRotation;
-				//cannonLine.SetPosition(0, cannonTransform.position);
-				//cannonLine.SetPosition(1, floorHit.point);
 			}
 #else
 

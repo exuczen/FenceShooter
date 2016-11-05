@@ -15,7 +15,6 @@ namespace FenceShooter {
 	using ActionEventTriggerDictionary = Dictionary<EventTriggerType, Dictionary<System.Delegate, UnityAction<BaseEventData>>>;
 
 	public class PointerEventTrigger : EventTrigger {
-		public delegate void VoidDelegate();
 		public delegate void PointerEventDelegate(PointerEventData data);
 		private ActionEventTriggerDictionary dict;
 

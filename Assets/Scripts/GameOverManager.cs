@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class GameOverManager : MonoBehaviour {
 		public PlayerHealth playerHealth;       // Reference to the player's health.
 

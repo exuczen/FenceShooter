@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class EnemyManager : MonoBehaviour {
 		public PlayerHealth playerHealth;       // Reference to the player's heatlh.
 		public GameObject enemy;                // The enemy prefab to be spawned.

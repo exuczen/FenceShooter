@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class EnemyMovement : MonoBehaviour {
 		Transform player;               // Reference to the player's position.
 		PlayerHealth playerHealth;      // Reference to the player's health.

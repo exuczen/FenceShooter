@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using SurvivalShooter;
 using UnitySampleAssets.CrossPlatformInput;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class PlayerShooting : MonoBehaviour {
 		public int damagePerShot = 20;                  // The damage inflicted by each bullet.
 		public float timeBetweenBullets = 0.15f;        // The time between each shot.

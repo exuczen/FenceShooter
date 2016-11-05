@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class ScoreManager : MonoBehaviour {
 		public static int score;        // The player's score.
 

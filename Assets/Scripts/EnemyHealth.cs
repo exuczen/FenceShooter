@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class EnemyHealth : MonoBehaviour {
 		public int startingHealth = 100;            // The amount of health the enemy starts the game with.
 		public int currentHealth;                   // The current health the enemy has.
@@ -13,8 +13,8 @@ namespace FenceShooter {
 		AudioSource enemyAudio;                     // Reference to the audio source.
 		ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
 		CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
-		public bool isDead;                         // Whether the enemy is dead.
-		public bool isSinking;                      // Whether the enemy has started sinking through the floor.
+		bool isDead;                                // Whether the enemy is dead.
+		bool isSinking;                             // Whether the enemy has started sinking through the floor.
 
 
 		void Awake() {

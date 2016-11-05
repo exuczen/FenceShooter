@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-
-namespace FenceShooter {
+namespace SurvivalShooter {
 	public class PlayerHealth : MonoBehaviour {
 		public int startingHealth = 100;                            // The amount of health the player starts the game with.
 		public int currentHealth;                                   // The current health the player has.
