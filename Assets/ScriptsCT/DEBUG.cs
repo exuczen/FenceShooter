@@ -28,7 +28,8 @@ namespace CT.DEBUG {
 	public static class LOG {
 		public static Text logContentsTextComponent;
 		public static int logContentsMaxLength;
-		private static System.Text.StringBuilder logContents = new System.Text.StringBuilder(64 * (1 << 10)), logEntry = new System.Text.StringBuilder(1 * (1 << 10));
+		private static System.Text.StringBuilder logContents = new System.Text.StringBuilder(64 * (1 << 10));
+		private static System.Text.StringBuilder logEntry = new System.Text.StringBuilder(1 * (1 << 10));
 		private static float lastWriteTime = float.NaN;
 		public static void Write(string s, bool notMainThread = false) {
 			// TODO FUTURE make this method "invisible" with some new Unity feature so that clicking in console would ignore this method in stack trace and navigate to caller

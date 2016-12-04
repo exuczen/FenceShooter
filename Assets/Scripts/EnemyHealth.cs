@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace SurvivalShooter {
 	public class EnemyHealth : MonoBehaviour {

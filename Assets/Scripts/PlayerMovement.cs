@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using UnitySampleAssets.CrossPlatformInput;
 using Utility;
 
