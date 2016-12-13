@@ -5,6 +5,10 @@ using UnityEditor;
 /// <summary>Unity extension stuff</summary>
 public static class UnityExtension
 {
+	[MenuItem("Scenes/Shop")]
+	public static void OpenSceneShop() {
+		CT.ExtensionUNITY.OpenScene("Scenes/Shop");
+	}
 	[MenuItem("Scenes/Main")]
 	public static void OpenSceneMain() {
 		CT.ExtensionUNITY.OpenScene("Scenes/Level 01");
