@@ -5,7 +5,7 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HellephantAnimatorOverrideController
+  m_Name: HellephantAOC
   m_Controller: {fileID: 9100000, guid: 2cd6bf77cac24414c8e134b0c0e7aed3, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: b77f122f451a2394898a24191c26107c, type: 3}
