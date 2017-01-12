@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace CT {
+namespace Utility {
 	public enum TransitionType {
 		LINEAR,
 		PARABOLIC_ACC,

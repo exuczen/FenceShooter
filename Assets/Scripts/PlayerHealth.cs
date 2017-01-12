@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using CT;
+using Utility;
 
 namespace SurvivalShooter {
 	public class PlayerHealth : MonoBehaviour {

@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System.Collections.Generic;
-using CT;
-using CT.DEBUG;
+using Utility;
+using Utility.DEBUG;
 using System.Reflection;
 
 namespace FenceShooter {

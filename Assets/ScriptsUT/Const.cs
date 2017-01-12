@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-namespace CT {
+namespace Utility {
 
 
 	public class Const {

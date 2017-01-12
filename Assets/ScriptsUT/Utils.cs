@@ -6,9 +6,9 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.IO;
-using CT;
+using Utility;
 
-namespace CT {
+namespace Utility {
 
 	//delegate bool CompareAnimals(Animal animalA, Animal animalB);
 

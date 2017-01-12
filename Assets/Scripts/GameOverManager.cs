@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using CT;
+using Utility;
 
 namespace SurvivalShooter {
 	public class GameOverManager : MonoBehaviour {
