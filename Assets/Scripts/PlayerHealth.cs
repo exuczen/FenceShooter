@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using CT;
+using Utility;
 
 namespace SurvivalShooter {
 	public class PlayerHealth : MonoBehaviour {
@@ -89,12 +91,18 @@ namespace SurvivalShooter {
 			// Turn off the movement and shooting scripts.
 			playerMovement.enabled = false;
 			playerShooting.enabled = false;
+
+			Animator hudAnimator = healthSlider.transform.parent.parent.GetComponent<Animator>();
+			this.StartCoroutineWithActionAfterTime(2, () => {
+				hudAnimator.SetTrigger("GameOver");
+			});
 		}
 
 
-		public void RestartLevel() {
+		public void RestartLevelDeprecated() {
+			Utils.Log("RestartLevelDeprecated");
 			// Reload the level that is currently loaded.
-			SceneManager.LoadScene(0);
+			////SceneManager.LoadScene(0);
 		}
 	}
 }

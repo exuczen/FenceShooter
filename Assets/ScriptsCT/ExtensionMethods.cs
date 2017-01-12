@@ -6,7 +6,19 @@ using UnityEngine.Assertions;
 using System.Collections;
 using System.Reflection;
 
+
 namespace CT {
+
+	public static class ExtensionMethodsForMonoBehaviour {
+		public static IEnumerator ExecuteAfterTime(float time, System.Action action) {
+			yield return new WaitForSeconds(time);
+			// Code to execute after the delay
+			action();
+		}
+		public static void StartCoroutineWithActionAfterTime(this MonoBehaviour mono, float time, System.Action action) {
+			mono.StartCoroutine(ExecuteAfterTime(time, action));
+		}
+	}
 	public static class ExtensionMethodsForBounds {
 		public static void ChunkifyX(this Bounds piece, Bounds anvil, float[] chunkWidths) {
 			#if LOG_VERBOSE

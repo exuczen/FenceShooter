@@ -11,7 +11,7 @@ namespace SurvivalShooter {
 
 		void Start() {
 			if (sfxVolSlider) {
-				sfxVolSlider.value = Mathf.Lerp(sfxVolSlider.minValue, sfxVolSlider.maxValue, 0.5f);
+				sfxVolSlider.value = Mathf.Lerp(sfxVolSlider.minValue, sfxVolSlider.maxValue, 0.3f);
 			}
 			if (musicVolSlider) {
 				musicVolSlider.value = Mathf.Lerp(musicVolSlider.minValue, musicVolSlider.maxValue, 0.5f);
