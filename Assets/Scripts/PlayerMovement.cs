@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using UnitySampleAssets.CrossPlatformInput;
-using Utility;
+using CT;
 
 namespace SurvivalShooter {
 	public class PlayerMovement : MonoBehaviour {

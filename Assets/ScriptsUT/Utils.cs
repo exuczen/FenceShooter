@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using CT;
 
-namespace Utility {
+namespace CT {
 
 	//delegate bool CompareAnimals(Animal animalA, Animal animalB);
 

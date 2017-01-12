@@ -13,7 +13,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Utility {
+namespace CT {
 	public enum TransitionProperty {
 		Position,
 		RotationEulerAngles,
