@@ -15,12 +15,12 @@ TagManager:
   - 
   - 
   - Floor
-  - Shootable
+  - StaticObstacle
   - LightMask
   - Invisible
   - Enemy
   - Clickable
-  - 
+  - Player
   - 
   - 
   - 

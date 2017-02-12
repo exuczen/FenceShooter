@@ -17,7 +17,7 @@ namespace SurvivalShooter {
 		Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 #if !MOBILE_INPUT
 		int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
-		int shootableMask;
+		int staticObstacleMask;
 		int enemyMask;
 		float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 #endif
@@ -26,9 +26,9 @@ namespace SurvivalShooter {
 #if !MOBILE_INPUT
 			// Create a layer mask for the floor layer.
 			floorMask = LayerMask.GetMask("Floor");
-			shootableMask = LayerMask.GetMask("Shootable");
+			staticObstacleMask = LayerMask.GetMask("StaticObstacle");
 			enemyMask = LayerMask.GetMask("Enemy");
-			Utils.Log("floorMask=" + floorMask + " shootableMask=" + shootableMask + " enemyMask=" + enemyMask);
+			Utils.Log("floorMask=" + floorMask + " staticObstacleMask=" + staticObstacleMask + " enemyMask=" + enemyMask);
 #endif
 
 			// Set up references.
@@ -106,7 +106,7 @@ namespace SurvivalShooter {
 			RaycastHit floorHit;
 
 			// Perform the raycast and if it hits something on the floor layer...
-			if (Physics.Raycast(camRay, out floorHit, camRayLength, enemyMask | floorMask | shootableMask)) {
+			if (Physics.Raycast(camRay, out floorHit, camRayLength, enemyMask | floorMask | staticObstacleMask)) {
 				touchMark.transform.position = floorHit.point;
 
 				// Create a vector from the player to the point on the floor the raycast from the mouse hit.

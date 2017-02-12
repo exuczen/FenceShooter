@@ -12,7 +12,7 @@ namespace SurvivalShooter {
 		float timer;                                    // A timer to determine when to fire.
 		Ray shootRay;                                   // A ray from the gun end forwards.
 		RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
-		int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+		int staticObstacleMask;                              // A layer mask so the raycast only hits things on the StaticObstacle layer.
 		int floorMask;
 		int enemyMask;
 		ParticleSystem gunParticles;                    // Reference to the particle system.
@@ -24,8 +24,8 @@ namespace SurvivalShooter {
 		Ray camRay;
 
 		void Awake() {
-			// Create a layer mask for the Shootable layer.
-			shootableMask = LayerMask.GetMask("Shootable");
+			// Create a layer mask for the StaticObstacle layer.
+			staticObstacleMask = LayerMask.GetMask("StaticObstacle");
 			floorMask = LayerMask.GetMask("Floor");
 			enemyMask = LayerMask.GetMask("Enemy");
 
@@ -102,8 +102,8 @@ namespace SurvivalShooter {
 			shootRay.origin = transform.position;
 			shootRay.direction = transform.forward;
 
-			// Perform the raycast against gameobjects on the shootable layer and if it hits something...
-			if (Physics.Raycast(shootRay, out shootHit, range, shootableMask | enemyMask)) {
+			// Perform the raycast against gameobjects on the StaticObstacle layer and if it hits something...
+			if (Physics.Raycast(shootRay, out shootHit, range, staticObstacleMask | enemyMask)) {
 				// Try and find an EnemyHealth script on the gameobject hit.
 				EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
 				//if (shootHit.collider.CompareTag("Enemy")) { }
@@ -117,7 +117,7 @@ namespace SurvivalShooter {
 				// Set the second position of the line renderer to the point the raycast hit.
 				gunLine.SetPosition(1, shootHit.point);
 			}
-			// If the raycast didn't hit anything on the shootable layer...
+			// If the raycast didn't hit anything on the StaticObstacle layer...
 			else {
 				// ... set the second position of the line renderer to the fullest extent of the gun's range.
 				gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
