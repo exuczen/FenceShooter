@@ -34,7 +34,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 8200000}
   - component: {fileID: 11400006}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: ZomBunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}

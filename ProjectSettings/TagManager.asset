@@ -16,11 +16,11 @@ TagManager:
   - 
   - Floor
   - StaticObstacle
-  - LightMask
-  - Invisible
+  - Player
   - Enemy
   - Clickable
-  - Player
+  - 
+  - 
   - 
   - 
   - 

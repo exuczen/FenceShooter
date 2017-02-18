@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 11487314}
   - component: {fileID: 11402556}
   - component: {fileID: 11415352}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Hellephant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
