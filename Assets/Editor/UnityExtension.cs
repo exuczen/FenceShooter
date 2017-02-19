@@ -14,8 +14,8 @@ public static class UnityExtension
 		Utility.ExtensionUNITY.OpenScene("Scenes/Level 01");
 	}
 	[MenuItem("Scenes/SurvivalShooter")]
-	public static void OpenSceneCompleted() {
-		Utility.ExtensionUNITY.OpenScene("_CompletedAssets/Scenes/Level 01 5.x");
+	public static void OpenSceneSurvivalShooter() {
+		Utility.ExtensionUNITY.OpenScene("Scenes/Level 01 5.x");
 	}
 
 	/// <summary>Alt+C to take a screenshot of game window</summary>
