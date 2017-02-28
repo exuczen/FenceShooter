@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using Utility;
-using Utility.DEBUG;
+using Utility.Debug;
 using System.Reflection;
 
 namespace FenceShooter {
@@ -26,7 +26,7 @@ namespace FenceShooter {
 		//	}
 		//}
 		void Awake() {
-			Utils.Log("EventTriggerList.Awake " + GetType());
+			Log.Write("EventTriggerList.Awake " + GetType());
 			dict = new ActionEventTriggerDictionary();
 			//VoidDelegate voidDelegate = Awake.;
 
@@ -40,7 +40,7 @@ namespace FenceShooter {
 			Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(camRay, out hit, 100f)) {
-				LOG.Write(hit.collider.ToString());
+				Log.Write(hit.collider.ToString());
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace FenceShooter {
 						if (typeEvents.TryGetValue(action, out actionListener)) {
 							item.callback.RemoveListener(actionListener);
 							typeEvents.Remove(action);
-							Utils.Log("successfully removed " + methodName + " from typeEvents");
+							Log.Write("successfully removed " + methodName + " from typeEvents");
 						}
 					}
 				}
@@ -83,7 +83,7 @@ namespace FenceShooter {
 			//VoidDelegate del = AddEvent;
 
 			string methodName = action.MethodFullName();
-			LOG.Write("AddEvent " + methodName);
+			Log.Write("AddEvent " + methodName);
 			//LOG.Write("AddEvent action.Method.ToString()=" + action.Method.ToString());
 			ActionEventDictionary typeEvents;
 			if (!dict.ContainsKey(type)) {
@@ -92,7 +92,7 @@ namespace FenceShooter {
 			} else if (dict.TryGetValue(type, out typeEvents)) {
 				if (typeEvents != null && typeEvents.ContainsKey(action)) {
 					if (typeEvents[action] != null) {
-						Utils.Log("typeEvents already contain " + methodName + " for " + type);
+						Log.Write("typeEvents already contain " + methodName + " for " + type);
 						return;
 					} else {
 						typeEvents.Remove(action);

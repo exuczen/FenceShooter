@@ -1,12 +1,12 @@
 using Utility;
-using Utility.DEBUG;
+using Utility.Debug;
 using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
 
 namespace Utility {
 	/// <summary>
-	/// Attach to object with animator component. Use only with "AppAnimCtrlMachineBehaviour".
+	/// Attach to object with animator component. Use only with "AnimCtrlMachineBehaviour".
 	/// NOTE lack of layer support (one layer per animator supported)
 	/// </summary>
 	[RequireComponent(typeof(Animator))]
@@ -33,8 +33,8 @@ namespace Utility {
 			stateFullNamehashCurrent = 0;
 		}
 
-		public string ToStringExt() { return "(" + Utility.DEBUG.Namehash.DBGet(stateFullNamehashCurrent) + ",p:" + Utility.DEBUG.Namehash.DBGet(stateFullNamehashPrevious) + ")"; }
+		public string ToStringExt() { return "(" + Namehash.DBGet(stateFullNamehashCurrent) + ",p:" + Namehash.DBGet(stateFullNamehashPrevious) + ")"; }
 
-		public override string ToString() { return Utility.DEBUG.Namehash.DBGet(stateFullNamehashCurrent); }
+		public override string ToString() { return Namehash.DBGet(stateFullNamehashCurrent); }
 	}
 }

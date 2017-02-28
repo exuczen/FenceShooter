@@ -2,6 +2,7 @@
 using UnityEngine.AI;
 using UnitySampleAssets.CrossPlatformInput;
 using Utility;
+using Utility.Debug;
 
 namespace SurvivalShooter {
 	public class PlayerMovement : MonoBehaviour {
@@ -28,7 +29,7 @@ namespace SurvivalShooter {
 			floorMask = LayerMask.GetMask("Floor");
 			staticObstacleMask = LayerMask.GetMask("StaticObstacle");
 			enemyMask = LayerMask.GetMask("Enemy");
-			Utils.Log("floorMask=" + floorMask + " staticObstacleMask=" + staticObstacleMask + " enemyMask=" + enemyMask);
+			Log.Write("floorMask=" + floorMask + " staticObstacleMask=" + staticObstacleMask + " enemyMask=" + enemyMask);
 #endif
 
 			// Set up references.
@@ -44,11 +45,11 @@ namespace SurvivalShooter {
 					RaycastHit hit;
 					//if (hit.collider.CompareTag("Enemy")) {}
 					if (Physics.Raycast(ray, out hit, 100)) {
-						Utils.Log("navMeshAgent new destination");
+						Log.Write("navMeshAgent new destination");
 						navMeshAgent.destination = hit.point;
 						navMeshAgent.Resume();
 					} else {
-						Utils.Log("raycast missed");
+						Log.Write("raycast missed");
 					}
 				}
 				if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance) {

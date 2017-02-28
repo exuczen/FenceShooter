@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.IO;
-using Utility;
+using Utility.Debug;
 
 namespace Utility {
 
@@ -34,7 +34,7 @@ namespace Utility {
 				try {
 					return Resources.Load(Multires.Folder.ToString() + "/" + name) as Texture2D;
 				} catch (Exception e) {
-					Utils.Log("LoadTextureSpecRes: " + name + " Exception:" + e.Message);
+					Log.Write("LoadTextureSpecRes: " + name + " Exception:" + e.Message);
 					return currTexture;
 				}
 			}
@@ -137,7 +137,7 @@ namespace Utility {
 
 		public static GameObject CreateRoundRectWithMeshModels(Vector2 size, float R, float posZ, Color color, Color borderColor, float border, string name) {
 			if (R < border) {
-				Debug.LogError("Utils.CreateRoundRectWithMeshModels: R<border");
+				UnityEngine.Debug.LogError("Utils.CreateRoundRectWithMeshModels: R<border");
 				return null;
 			}
 
@@ -414,6 +414,21 @@ namespace Utility {
 		//	}
 		//}
 
+		/// <summary>Busy "sleep" by doing 1M add+mul float operations iterationsMultiplier times</summary>
+		public static void SleepBusy(int iterationsMultiplier) {
+#if DEBUG
+			{
+				Log.Write("DEBUG.UTIL.SleepBusy: 1M add+mul float operations * " + iterationsMultiplier);
+				for (int iter = 0; iter < iterationsMultiplier; iter++) {
+					float t = Mathf.PI;
+					for (int i = 0; i < 1000000; i++) {
+						t *= Mathf.PI;
+					}
+				}
+			}
+#endif
+		}
+
 		public static string GetAllocatedMemory() {
 			long bytes = System.GC.GetTotalMemory(false);
 			int mb = (int)(bytes / 1000000);
@@ -426,27 +441,9 @@ namespace Utility {
 			return mb + " " + kbString + " " + bString;
 			//			return bytes.ToString();
 		}
-#if DEBUG
-		public static void Log(string s) {
-#if UNITY_EDITOR
-			s = "[" + Time.time.ToString("F4") + "] " + s;
-			Debug.Log(s);
-#elif UNITY_ANDROID
-			Debug.Log ("# "+s);
-#elif UNITY_IOS
-			Debug.Log ("# "+s);
-#elif UNITY_WP8 || UNITY_WP_8_1
-			System.Diagnostics.Debug.WriteLine("# "+s);
-			//		Console.WriteLine(s);
-			//		print(s);
-#endif
-		}
-#else
-		public static void Log (string s){}
-#endif
 
 		public static void PrintSystemInfo() {
-			Utils.Log(
+			Log.Write(
 				SystemInfo.deviceModel + "\n" +
 				SystemInfo.deviceName + "\n" +
 				SystemInfo.deviceType + "\n" +
@@ -459,7 +456,7 @@ namespace Utility {
 			try {
 				using (StreamReader sr = File.OpenText(filePath)) {
 					text = sr.ReadToEnd();
-					Utils.Log(text);
+					Log.Write(text);
 #if UNITY_WP_8_1
 #else
 					sr.Close();
@@ -467,7 +464,7 @@ namespace Utility {
 				}
 			} catch (IOException e) {
 
-				Utils.Log(e.Message);
+				Log.Write(e.Message);
 			}
 			return text;
 		}

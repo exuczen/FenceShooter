@@ -1,5 +1,5 @@
 ﻿using Utility;
-using Utility.DEBUG;
+using Utility.Debug;
 using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
@@ -15,7 +15,7 @@ namespace Utility
 		private void Awake()
 		{
 #if LOG_VERBOSE
-			LOG.PrintStartupInfo();
+			Log.PrintStartupInfo();
 #endif
 			App.AwakeOwn(this);
 			// uncomment to disable "editor only" objects on run (useful if sometimes those objs interfere visually with level and make designing harder)
@@ -33,7 +33,7 @@ namespace Utility
 		private void OnApplicationFocus(bool focusStatus)
 		{
 #if LOG_VERBOSE
-			LOG.Write("App.OnApplicationFocusOwn : focusStatus = " + focusStatus);
+			Log.Write("App.OnApplicationFocusOwn : focusStatus = " + focusStatus);
 #endif
 			App.OnApplicationFocusOwn(focusStatus);
 		}
@@ -41,14 +41,14 @@ namespace Utility
 		private void OnApplicationPause(bool pauseStatus)
 		{
 #if LOG_VERBOSE
-			LOG.Write("App.OnApplicationPause : pauseStatus = " + pauseStatus);
+			Log.Write("App.OnApplicationPause : pauseStatus = " + pauseStatus);
 #endif
 		}
 		/// <summary>NOTE: Unity event</summary>
 		private void OnApplicationQuit()
 		{
 #if LOG_VERBOSE
-			LOG.Write("App.OnApplicationQuit");
+			Log.Write("App.OnApplicationQuit");
 #endif
 		}
 
@@ -140,7 +140,7 @@ namespace Utility
 			public static int StateMap = Animator.StringToHash("Base Layer.Map");
 			static Namehash()
 			{
-				Utility.DEBUG.Namehash.DBAdd(typeof(Namehash));
+				Debug.Namehash.DBAdd(typeof(Namehash));
 			}
 		}
 

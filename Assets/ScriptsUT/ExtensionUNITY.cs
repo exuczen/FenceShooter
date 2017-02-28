@@ -1,6 +1,6 @@
 ﻿#if UNITY_EDITOR
 using Utility;
-using Utility.DEBUG;
+using Utility.Debug;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
@@ -70,8 +70,8 @@ namespace Utility {
 						gameViewSize = new Vector2(Screen.width, Screen.height);
 					}
 				}
-				#if LOG_VERBOSE
-					LOG.Write("ExtensionUNITY.Screenshot.Take: gameViewSize=" + gameViewSize.x + "," + gameViewSize.y + " Screen.width,height=" + Screen.width + "," + Screen.height);
+#if LOG_VERBOSE
+				Log.Write("ExtensionUNITY.Screenshot.Take: gameViewSize=" + gameViewSize.x + "," + gameViewSize.y + " Screen.width,height=" + Screen.width + "," + Screen.height);
 				#endif
 				// create actual screenshot
 				CaptureScreenDefault(gameViewSize);
@@ -83,14 +83,14 @@ namespace Utility {
 					CreateScreenshotsFolderInNotExists();
 					string filePath = FilePath((int)fileNameResolution.x, (int)fileNameResolution.y);
 					Application.CaptureScreenshot(filePath, 1);
-					#if LOG_VERBOSE
-						LOG.Write("ExtensionUNITY.Screenshot.CaptureScreenDefault: screenshot saved in " + filePath);
+#if LOG_VERBOSE
+					Log.Write("ExtensionUNITY.Screenshot.CaptureScreenDefault: screenshot saved in " + filePath);
 					#endif
 				} catch (Exception exception) {
 #if LOG_ERROR
 						LOG.Write("ExtensionUNITY.Screenshot.CaptureScreenDefault: " + exception.ToString());
 #endif
-					LOG.Write(exception.ToString());
+					Log.Write(exception.ToString());
 					throw;
 				}
 			}
@@ -118,14 +118,14 @@ namespace Utility {
 					CreateScreenshotsFolderInNotExists();
 					string filePath = FilePath(width, height);
 					File.WriteAllBytes(filePath, bytes);
-					#if LOG_VERBOSE
-						LOG.Write("ExtensionUNITY.Screenshot.CaptureScreenWithRenderingToTexture: screenshot saved in " + filePath);
+#if LOG_VERBOSE
+					Log.Write("ExtensionUNITY.Screenshot.CaptureScreenWithRenderingToTexture: screenshot saved in " + filePath);
 					#endif
 				} catch (System.Exception exception) {
 #if LOG_ERROR
 						LOG.Write("ExtensionUNITY.Screenshot.CaptureScreenWithRenderingToTexture: " + exception.ToString());
 #endif
-					LOG.Write(exception.ToString());
+					Log.Write(exception.ToString());
 					throw;
 				}
 				RenderTexture.active = activePreviously;

@@ -1,5 +1,5 @@
 using Utility;
-using Utility.DEBUG;
+using Utility.Debug;
 using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
@@ -14,7 +14,7 @@ namespace Utility {
 		/// <summary>Registers state being entered as current.</summary>
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 			#if LOG_VERBOSE
-				// LOG.Write("AppAnimCtrlMemoryBehaviour.OnStateEnter : name = " + animator.name + ", state = " + CT.DEBUG.Namehash.DBGet(stateInfo.fullPathHash));
+				 Log.Write("AppAnimCtrlMemoryBehaviour.OnStateEnter : name = " + animator.name + ", state = " + Namehash.DBGet(stateInfo.fullPathHash));
 			#endif
 			if (memory == null) {
 				memory = animator.GetComponent<AnimCtrlMemoryComponent>();

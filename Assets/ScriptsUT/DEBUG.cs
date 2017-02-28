@@ -1,12 +1,12 @@
 #if LOG_VERBOSE
-//#warning CT.DEBUG log is ENABLED for VERBOSE
+//#warning Utility.Debug log is ENABLED for VERBOSE
 #else
-//#warning CT.DEBUG log is disabled for VERBOSE
+//#warning Utility.Debug log is disabled for VERBOSE
 #endif
 #if LOG_ERROR
-//#warning CT.DEBUG log is ENABLED for ERROR
+//#warning Utility.Debug log is ENABLED for ERROR
 #else
-//#warning CT.DEBUG log is disabled for ERROR
+//#warning Utility.Debug log is disabled for ERROR
 #endif
 #if LOG_VERBOSE || LOG_ERROR
 #define LOGGING
@@ -24,8 +24,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Utility.DEBUG {
-	public static class LOG {
+namespace Utility.Debug {
+	public static class Log {
 		public static Text logContentsTextComponent;
 		public static int logContentsMaxLength;
 		private static System.Text.StringBuilder logContents = new System.Text.StringBuilder(64 * (1 << 10));
@@ -48,7 +48,7 @@ namespace Utility.DEBUG {
 				#endif
 				;
 			if (!notMainThread) {
-				LOG.lastWriteTime = Time.time;
+				Log.lastWriteTime = Time.time;
 			}
 			if (prepareLine /*|| LOG.logContentsTextComponent != null*/) {
 				logEntry.Length = 0;
@@ -56,24 +56,24 @@ namespace Utility.DEBUG {
 				if (notMainThread) {
 					logEntry.Append("?"); // in threads other than main, we show previous Time.time with question mark to indicate that time is not precise (possibly way way off!)
 				}
-				logEntry.Append(LOG.lastWriteTime.ToString("F4"));
+				logEntry.Append(Log.lastWriteTime.ToString("F4"));
 				logEntry.Append("] ");
 				logEntry.Append(s);
 				logEntry.Append("\n");
 				s = logEntry.ToString(0, logEntry.Length - 1); // omit trailing newline for "LOG", use it only in own log overlay
 			}
-			if (!notMainThread && (LOG.logContentsTextComponent != null)) {
+			if (!notMainThread && (Log.logContentsTextComponent != null)) {
 				logContents.Insert(0, logEntry);
 				if (logContents.Length > logContentsMaxLength) {
 					logContents.Remove(logContentsMaxLength, logContents.Length - logContentsMaxLength);
 				}
-				LOG.logContentsTextComponent.text = logContents.ToString();
+				Log.logContentsTextComponent.text = logContents.ToString();
 			}
 			#if DEBUG
 			{
 				#if UNITY_EDITOR
 				{
-					Debug.Log(s);
+					UnityEngine.Debug.Log(s);
 				}
 				#elif UNITY_ANDROID
 				{
@@ -94,11 +94,11 @@ namespace Utility.DEBUG {
 			#endif
 		}
 		public static void PrintStartupInfo() {
-			LOG.Write(DEVINFO.All);
+			Log.Write(DevInfo.All);
 		}
 	}
 
-	public static class DEVINFO {
+	public static class DevInfo {
 		public static string All {
 			get
 			{
@@ -169,45 +169,6 @@ namespace Utility.DEBUG {
 			}
 		}
 	}
-	public static class UTIL {
-		public static string GetAllocatedMemory() {
-			#if DEBUG
-			{
-				long bytes = System.GC.GetTotalMemory(false);
-				return bytes.ToString() + "B";
-				/*
-				int mb = (int)(bytes/1000000);
-				int bytesInMB = mb*1000000;
-				int kb = (int)((bytes-bytesInMB)/1000);
-				int bytesInKB = kb*1000;
-				int b = (int)(bytes-bytesInMB-bytesInKB);
-				string kbString = (kb<10 ? "00"+kb : (kb<100 ? "0"+kb : ""+kb));
-				string bString = (b<10 ? "00"+b : (b<100 ? "0"+b : ""+b));
-				return mb+" "+kbString+" "+bString;
-				*/
-			}
-			#else
-			{
-				return "";
-			}
-			#endif
-		}
-		
-		/// <summary>Busy "sleep" by doing 1M add+mul float operations iterationsMultiplier times</summary>
-		public static void SleepBusy(int iterationsMultiplier) {
-			#if DEBUG
-			{
-				LOG.Write("DEBUG.UTIL.SleepBusy: 1M add+mul float operations * " + iterationsMultiplier);
-				for (int iter = 0; iter < iterationsMultiplier; iter++) {
-					float t = Mathf.PI;
-					for (int i = 0; i < 1000000; i++) {
-						t *= Mathf.PI;
-					}
-				}
-			}
-			#endif
-		}
-	}
 
 	public static class Namehash {
 		/// <summary>Unity Animator state/trigger namehash to name pairs. Useful for debugging when only namehash is available in runtime.</summary>
@@ -239,7 +200,7 @@ namespace Utility.DEBUG {
 			}
 			#endif
 		}
-		/// <summary>Gets name of Unity Animator state/trigger given that CT.DEBUG.Namehash.DBAdd was called before for every type with namehash definitions.
+		/// <summary>Gets name of Unity Animator state/trigger given that Utility.Debug.Namehash.DBAdd was called before for every type with namehash definitions.
 		/// This is needed because Unity uses only namehashes in runtime, and that makes logging/debugging animator states unfeasible.</summary>
 		public static string DBGet(int namehash) {
 			#if NAMEHASH

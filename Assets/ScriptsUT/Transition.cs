@@ -247,7 +247,7 @@ namespace Utility {
 
 		public void DrawPlot() {
 			for (int i = 0; i < plotPointCounter - 1; i++) {
-				Debug.DrawLine(plotPoints[i], plotPoints[i + 1]);
+				UnityEngine.Debug.DrawLine(plotPoints[i], plotPoints[i + 1]);
 			}
 		}
 

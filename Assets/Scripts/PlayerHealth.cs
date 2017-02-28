@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Utility;
+using Utility.Debug;
 
 namespace SurvivalShooter {
 	public class PlayerHealth : MonoBehaviour {
@@ -99,7 +100,7 @@ namespace SurvivalShooter {
 
 
 		public void RestartLevelDeprecated() {
-			Utils.Log("RestartLevelDeprecated");
+			Log.Write("RestartLevelDeprecated");
 			// Reload the level that is currently loaded.
 			////SceneManager.LoadScene(0);
 		}

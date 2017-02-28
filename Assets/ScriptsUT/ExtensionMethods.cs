@@ -1,5 +1,5 @@
 using Utility;
-using Utility.DEBUG;
+using Utility.Debug;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
