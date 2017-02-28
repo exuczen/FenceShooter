@@ -11,7 +11,7 @@ namespace SurvivalShooter {
 
 		void Start() {
 			if (sfxVolSlider) {
-				sfxVolSlider.value = Mathf.Lerp(sfxVolSlider.minValue, sfxVolSlider.maxValue, 0.3f);
+				sfxVolSlider.value = Mathf.Lerp(sfxVolSlider.minValue, sfxVolSlider.maxValue, 0.2f);
 			}
 			if (musicVolSlider) {
 				musicVolSlider.value = Mathf.Lerp(musicVolSlider.minValue, musicVolSlider.maxValue, 0.5f);
@@ -26,4 +26,23 @@ namespace SurvivalShooter {
 			masterMixer.SetFloat("musicVol", musicLvl);
 		}
 	}
+
+/*
+-	public class VolumeHandler : MonoBehaviour {
+-		// Use this for initialization
+-		void Start() {
+-			if (GameObject.Find("EffectsSlider"))
+-				GameObject.Find("EffectsSlider").GetComponent<Slider>().onValueChanged.AddListener(SetVolume);
+-		}
+-
+-		void SetVolume(float volume) {
+-			GetComponent<AudioSource>().volume = volume;
+-		}
+-
+-		void OnDestroy() {
+-			if (GameObject.Find("EffectsSlider"))
+-				GameObject.Find("EffectsSlider").GetComponent<Slider>().onValueChanged.RemoveListener(SetVolume);
+-		}
+-	}
+*/
 }
