@@ -82,7 +82,7 @@ namespace Utility {
 				try {
 					CreateScreenshotsFolderInNotExists();
 					string filePath = FilePath((int)fileNameResolution.x, (int)fileNameResolution.y);
-					Application.CaptureScreenshot(filePath, 1);
+					ScreenCapture.CaptureScreenshot(filePath, 1);
 #if LOG_VERBOSE
 					Log.Write("ExtensionUNITY.Screenshot.CaptureScreenDefault: screenshot saved in " + filePath);
 					#endif
